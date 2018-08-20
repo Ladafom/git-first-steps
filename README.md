@@ -71,3 +71,13 @@
 	+ Второй элемент
 	- Третий элемент
 
+* Ссылки. Чтобы создать ссылку пишем [Название для ссылки](https://qeep.pro)
+    * Фотография вставляется с помощью ссылки с восклицательным знаком: ![Фотография](https://www.google.ru/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjsnv3d6_rcAhUkmIsKHYmpDuYQjRx6BAgBEAU&url=http%3A%2F%2Fwww.pavelin.ru%2Ffauna%2F512-loshadka.html&psig=AOvVaw3JNe_77EGxdUPGk88AI7OA&ust=1534827376861871)
+
+
+### Таблицы
+Первая колонка|Вторая колонка
+--------------|--------------
+Ячейка 1      | Ячейка 2
+Ячейка 3      | Ячейка 4
+
