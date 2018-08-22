@@ -12,4 +12,6 @@ table {
     text-align: center;
 }
 
-
+input {
+    text-align: right;
+}
