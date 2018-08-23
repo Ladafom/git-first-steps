@@ -1,3 +1,4 @@
+const pointButton = document.getElementById('point-button');
 const input = document.getElementById('num-input');
 const backspaceButton = document.getElementById('backspace-button');
 backspaceButton.onclick = () => {
@@ -7,20 +8,41 @@ backspaceButton.onclick = () => {
     }
 };
 
+let num = null;
+let operation = null;
 enterNumber = (n) => {
+    if (n === '+') {
+        if (num === null) {
+            operation = '+';
+            console.log('+')
+        }
+        return;
+    }
+
+    if (n === '.') {
+        for (let i = 0; i < input.value.length; i++) {
+            if (input.value[i] === '.') {
+                return
+            }
+        }
+        input.value += '.';
+    }
+
     if (input.value === '0') {
         input.value = n;
     } else {
         input.value = input.value + n
+
     }
 };
-
 const numButtons = document.getElementsByClassName('button');
 
 for (let i = 0; i < numButtons.length; i++) {
     const button = numButtons [i];
     const num = button.textContent;
-    button.onclick = () => {enterNumber(num)}
+    button.onclick = () => {
+        enterNumber(num)
+    }
 }
 
 
