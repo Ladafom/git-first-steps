@@ -1,6 +1,9 @@
 const pointButton = document.getElementById('point-button');
 const input = document.getElementById('num-input');
 const backspaceButton = document.getElementById('backspace-button');
+let num = 0, p = false;
+let lop = null;
+
 backspaceButton.onclick = () => {
     if (input.value.leght === -1) {
     } else {
@@ -8,17 +11,7 @@ backspaceButton.onclick = () => {
     }
 };
 
-let num = null;
-let operation = null;
 enterNumber = (n) => {
-    if (n === '+') {
-        if (num === null) {
-            operation = '+';
-            console.log('+')
-        }
-        return;
-    }
-
     if (n === '.') {
         for (let i = 0; i < input.value.length; i++) {
             if (input.value[i] === '.') {
@@ -29,19 +22,55 @@ enterNumber = (n) => {
     }
 
     if (input.value === '0') {
-        input.value = n;
+        input.value = n
     } else {
-        input.value = input.value + n
-
+        if (p) {
+            num = parseFloat(input.value);
+            input.value = n;
+            p = false;
+        } else {
+            input.value = input.value + n
+        }
     }
 };
-const numButtons = document.getElementsByClassName('button');
 
-for (let i = 0; i < numButtons.length; i++) {
-    const button = numButtons [i];
-    const num = button.textContent;
+const numButtons = document.getElementsByClassName('button');
+[].forEach.call(numButtons, (button) => {
     button.onclick = () => {
-        enterNumber(num)
+        enterNumber(button.textContent)
+    }
+})
+
+const dispatchOperation = (operation) => {
+    if (lop) {
+        if (!p) {
+            num = processOperation(lop, num, parseFloat(input.value));
+            input.value = num;
+        }
+    }
+
+    p = true;
+    lop = operation;
+};
+
+const processOperation = (operation, argument1, argument2) => {
+    switch (operation) {
+        case '+':
+            return argument1 + argument2;
+        case  '-':
+            return argument1 - argument2;
+        case '*':
+            return argument1 * argument2;
+        case '/':
+            return argument1 / argument2;
+    }
+};
+
+const operationButtons = document.getElementsByClassName('operation-button');
+for (let i = 0; i < operationButtons.length; i++) {
+    const button = operationButtons [i];
+    button.onclick = () => {
+        dispatchOperation(button.textContent);
     }
 }
 
